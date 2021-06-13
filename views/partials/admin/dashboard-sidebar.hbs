@@ -5,7 +5,7 @@
         <div class="profile-image">
           <img class="img-xs rounded-circle"
             src="images/depositphotos_39258143-stock-illustration-businessman-avatar-profile-picture.jpg"
-            alt="profile image">
+            alt="profile image" />
           <div class="dot-indicator bg-success"></div>
         </div>
         <div class="text-wrapper">
@@ -23,63 +23,109 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" href="index.html">
-        <span class="menu-title">Dashboard</span>
+        <span class="menu-title">Overview</span>
         <i class="icon-screen-desktop menu-icon"></i>
       </a>
     </li>
-    <li class="nav-item nav-category"><span class="nav-link">UI Elements</span></li>
+    <li class="nav-item nav-category"><span class="nav-link">Management</span></li>
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-        <span class="menu-title">Basic UI Elements</span>
+        <span class="menu-title">Employee</span>
         <i class="icon-layers menu-icon"></i>
       </a>
       <div class="collapse" id="ui-basic">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-          <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/ui-features/buttons.html">Employee
+              Overview</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/ui-features/typography.html">Employee Management</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/ui-features/typography.html">Salary</a>
+          </li>
         </ul>
       </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="pages/icons/simple-line-icons.html">
-        <span class="menu-title">Icons</span>
-        <i class="icon-globe menu-icon"></i>
+      <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+        <span class="menu-title">Products/Services</span>
+        <i class="icon-layers menu-icon"></i>
       </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="pages/forms/basic_elements.html">
-        <span class="menu-title">Form Elements</span>
-        <i class="icon-book-open menu-icon"></i>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="pages/charts/chartist.html">
-        <span class="menu-title">Charts</span>
-        <i class="icon-chart menu-icon"></i>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="pages/tables/basic-table.html">
-        <span class="menu-title">Tables</span>
-        <i class="icon-grid menu-icon"></i>
-      </a>
-    </li>
-    <li class="nav-item nav-category"><span class="nav-link">Sample Pages</span></li>
-    <li class="nav-item">
-      <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-        <span class="menu-title">General Pages</span>
-        <i class="icon-doc menu-icon"></i>
-      </a>
-      <div class="collapse" id="auth">
+      <div class="collapse" id="ui-basic">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-          <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-          <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-          <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
-          <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/ui-features/buttons.html">Product
+              Overview</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/ui-features/typography.html">Product
+              Management</a>
+          </li>
+
         </ul>
       </div>
     </li>
+
+   
+    {{!-- <li class="nav-item nav-category"><span class="nav-link">Sales</span></li>
+    <li class="nav-item">
+      <a class="nav-link" href="index.html">
+        <span class="menu-title">Estimate</span>
+        <i class="icon-screen-desktop menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="index.html">
+        <span class="menu-title">Sales Order</span>
+        <i class="icon-screen-desktop menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="index.html">
+        <span class="menu-title">Delivery Chellans</span>
+        <i class="icon-screen-desktop menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="index.html">
+        <span class="menu-title">Invoice</span>
+        <i class="icon-screen-desktop menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="index.html">
+        <span class="menu-title">Payment Received</span>
+        <i class="icon-screen-desktop menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item nav-category"><span class="nav-link">Purchase</span></li>
+    <li class="nav-item">
+      <a class="nav-link" href="index.html">
+        <span class="menu-title">Vendors</span>
+        <i class="icon-screen-desktop menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="index.html">
+        <span class="menu-title">Expenses</span>
+        <i class="icon-screen-desktop menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="index.html">
+        <span class="menu-title">Purchase Order</span>
+        <i class="icon-screen-desktop menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="index.html">
+        <span class="menu-title">Bill</span>
+        <i class="icon-screen-desktop menu-icon"></i>
+      </a>
+    </li> --}}
+    
 
   </ul>
 
