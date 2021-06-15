@@ -397,13 +397,13 @@
             <!-- Collumn 3 -->
             <div class="s-12 m-12 l-4">
               <h4 class="text-uppercase text-strong">Employee Login</h4>
-              <form class="customform text-white">
+              <form class="customform text-white" action="/login" method="POST">
                 <div class="line">
                   <div class="margin">
                     <input
-                      name="email"
+                      name="username"
                       class="required email border-radius"
-                      placeholder="Your e-mail"
+                      placeholder="Email or Mobile Number"
                       title="Your e-mail"
                       type="text"
                     />
@@ -429,7 +429,7 @@
                     "
                     type="submit"
                   >
-                    Submit Button
+                    Login
                   </button>
                 </div>
               </form>
