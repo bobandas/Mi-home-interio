@@ -17,6 +17,30 @@ module.exports = {
         callback(data.ops[0]);
       });
   },
+
+
+
+
+
+  findEmployee: (empId) => {
+    console.log(empId);
+    
+    
+    return new Promise(async (resolve, reject) => {
+     let data = await db
+        .get()
+        .collection(collection.EMPLOYEE_COLLECTION)
+        .findOne({ _id: ObjectId(empId)  });
+      if (data == null) {
+        reject("Internor Error-No employee Found In DB");
+      } else {
+       
+       
+        resolve(data);
+      }
+    });
+  },
+
   employeeLogin: (data) => {
     return new Promise(async (resolve, reject) => {
       let loginStatus = false;
@@ -31,17 +55,17 @@ module.exports = {
           .then((status) => {
             if (status) {
               loginStatus = true;
-              response.employee = employee;
+              response.employee = employee._id;
               response.status = true;
               resolve(response, loginStatus);
             } else {
               console.log("password failed");
-              resolve({ loginStatus });
+              reject({ loginStatus });
             }
           });
       } else {
         console.log("user not found");
-        resolve({ loginStatus });
+        reject({ loginStatus });
       }
     });
   },

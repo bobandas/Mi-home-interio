@@ -1,0 +1,89 @@
+
+
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Edit Employee Profile</h4>
+      <p class="card-description"> </p>
+      <form class="forms-sample">
+        <div class="form-group">
+          <label for="exampleInputName1">Name   :  <h3 style="display: inline;">{{data.employeename}}       </h3><button type="button" onclick="hideInput('name-select')" class="btn btn-outline-secondary btn-sm btn-rounded btn-icon"><span class=" icon-pencil"></span></button></label>
+          <input
+            type="text"
+            class="form-control name-select d-none"
+            id="exampleInputName1"
+            placeholder="{{data.employeename}}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail3">Email address   : <h3 style="display: inline;">   Email  </h3><button type="button" onclick="hideInput('Email-select')" class="btn btn-outline-secondary btn-rounded btn-icon"><span class=" icon-pencil"></span></button></label>
+          <input
+            type="email"
+            class="form-control Email-select d-none "
+            id="exampleInputEmail3"
+            placeholder="Email"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleInputName1">Resident ID   : <h3 style="display: inline;">   id   </h3><button type="button" onclick="hideInput('rId-select')" class="btn btn-outline-secondary btn-rounded btn-icon"><span class=" icon-pencil"></span></button></label>
+          <input
+            type="text"
+            class="form-control rId-select d-none"
+            id="exampleInputName1"
+            placeholder="Resident Id Number"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleInputName1">Mobile</label>
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputName1"
+            placeholder="Mobile"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>File upload</label>
+          <input type="file" name="img[]" class="file-upload-default" />
+          <div class="input-group col-xs-12">
+            <input
+              type="text"
+              class="form-control file-upload-info"
+              disabled
+              placeholder="Upload Image"
+            />
+            <span class="input-group-append">
+              <button
+                class="file-upload-browse btn btn-primary"
+                type="button"
+              >Upload</button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleTextarea1">Bio</label>
+          <textarea
+            class="form-control"
+            id="exampleTextarea1"
+            rows="4"
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+        <button class="btn btn-light">Cancel</button>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+ 
+
+function hideInput(Classname){
+ document.getElementsByClassName(Classname)[0].classList.toggle("d-block"); 
+}
+
+
+
+
+</script>
