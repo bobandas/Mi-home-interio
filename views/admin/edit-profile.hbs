@@ -4,14 +4,14 @@
   <div class="card">
     <div class="card-body">
       <h4 class="card-title">Edit Employee Profile</h4>
-      <p class="card-description"> </p>
-      <form class="forms-sample">
+      <form  action="edit-profile" method="POST">
         <div class="form-group">
           <label for="exampleInputName1">Name   :  <h3 style="display: inline;">{{data.employeename}}       </h3><button type="button" onclick="hideInput('name-select')" class="btn btn-outline-secondary btn-sm btn-rounded btn-icon"><span class=" icon-pencil"></span></button></label>
           <input
             type="text"
             class="form-control name-select d-none"
             id="exampleInputName1"
+            name="employeename"
             placeholder="{{data.employeename}}"
           />
         </div>
@@ -21,6 +21,7 @@
             type="email"
             class="form-control Email-select d-none "
             id="exampleInputEmail3"
+            name="employeeemail"
             placeholder="Email"
           />
         </div>
@@ -30,6 +31,7 @@
             type="text"
             class="form-control rId-select d-none"
             id="exampleInputName1"
+            name="employeeresidentID"
             placeholder="Resident Id Number"
           />
         </div>
@@ -39,11 +41,12 @@
             type="text"
             class="form-control"
             id="exampleInputName1"
+            name="employeemobile"
             placeholder="Mobile"
           />
         </div>
 
-        <div class="form-group">
+        {{!-- <div class="form-group">
           <label>File upload</label>
           <input type="file" name="img[]" class="file-upload-default" />
           <div class="input-group col-xs-12">
@@ -60,13 +63,14 @@
               >Upload</button>
             </span>
           </div>
-        </div>
+        </div> --}}
 
         <div class="form-group">
           <label for="exampleTextarea1">Bio</label>
           <textarea
             class="form-control"
             id="exampleTextarea1"
+            name="employeebio"
             rows="4"
           ></textarea>
         </div>
