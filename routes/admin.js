@@ -8,6 +8,9 @@ var router = express.Router();
 router.get("/", function (req, res, next) {
   res.render("admin/dashboard", { layout: "admin-layout" });
 });
+router.get('/admin',(req,res)=>{
+  res.redirect('/')
+})
 
 router.get("/addemployee", (req, res, next) => {
   res.render("admin/add-employee", { layout: "admin-layout" });
@@ -33,4 +36,8 @@ router.get("/profile/edit-profile", (req, res) => {
     }
   });
 });
+
+router.get('/add-product',(req,res)=>{
+  res.render('admin/add-product',{ layout: "admin-layout" })
+})
 module.exports = router;

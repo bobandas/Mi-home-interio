@@ -12,6 +12,7 @@ var adminHelpers=require('./Helpers/admin-helpers')
 
 var indexRouter = require('./routes/index');
 var adminRouter = require('./routes/admin');
+const { urlCheck } = require('./Helpers/admin-helpers');
 
 var app = express();
 
@@ -38,6 +39,9 @@ db.connect((err) => {
 
 app.use('/', indexRouter);
 app.use('/admin',adminHelpers.validateLogin, adminRouter);
+app.use('/admin/admin',(req,res)=>{
+  res.redirect('/admin')
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
