@@ -77,5 +77,51 @@ module.exports = {
       res.redirect("/");
     }
   },
+  addProduct: (productData)=>{
+    return new Promise(async(resolve,reject)=>{
+      await db.get().collection(collection.PRODUCT_COLLECTION).insertOne(productData).then(()=>{
+        resolve()
+      })
+      
+    })
+  },
+  findAllProduct: () => {
+   
+    
+    
+    return new Promise(async (resolve, reject) => {
+     let allProductData= await db
+        .get()
+        .collection(collection.PRODUCT_COLLECTION)
+        .find().toArray()
+      if (allProductData == null) {
+        reject("NO Product found");
+      } else {
+        
+       
+       
+        resolve(allProductData);
+      }
+    });
+  },
+  
+  findProduct: (itemCode) => {
+   
+    
+    
+    return new Promise(async (resolve, reject) => {
+     let data = await db
+        .get()
+        .collection(collection.PRODUCT_COLLECTION)
+        .findOne({ _id: itemCode });
+      if (data == null) {
+        reject("Product Not found");
+      } else {
+       
+       
+        resolve(data);
+      }
+    });
+  },
   
 };
