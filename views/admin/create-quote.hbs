@@ -80,7 +80,7 @@
                             <div class="col-lg-2 col-md-4">
                                 <div class="form-group">
                                     <label for="txt-qty">Quantity</label>
-                                    <input name="txt-qty" type="text" class="form-control" id="txt-qty"
+                                    <input name="txt-qty" type="text" class="form-control" id="item-qty"
                                         placeholder="Enter Quantity" />
                                 </div>
                             </div>
@@ -121,30 +121,7 @@
                                 <th></th>
                             </thead>
                             <tbody id="tableBody">
-                                <tr>
-                                    <td>KTC001</td>
-                                    <td>Soap</td>
-                                    <td>5</td>
-                                    <td>70</td>
-                                    <td>70</td>
-                                    <td><i class="fas fa-trash"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>I001</td>
-                                    <td>Soap</td>
-                                    <td>5</td>
-                                    <td>70</td>
-                                    <td>70</td>
-                                    <td><i class="fas fa-trash"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>I001</td>
-                                    <td>Soap</td>
-                                    <td>5</td>
-                                    <td>70</td>
-                                    <td>70</td>
-                                    <td><i class="fas fa-trash"></i></td>
-                                </tr>
+
 
                             </tbody>
                             <tfoot>
@@ -189,39 +166,21 @@
 </div>
 
 <script>
-    var addButton = document.getElementById('btn-add')
+    var addButton = document.getElementById("btn-add")
+
+
     addButton.addEventListener("click", () => {
+
         var productid = document.getElementById('quoteitemcode').value;
-        var tablecontent = document.getElementById('tableBody')
-        // create a JSON object
-        const invoiceData = {
-            proId: productid
-
-        };
-
-        // request options
-        const options = {
-            method: 'POST',
-            body: JSON.stringify(invoiceData),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }
-
-        // send post request
-        fetch('/admin/fetchproduct', options)
-            .then(res => res.json())
+        fetch('/admin/fetchproduct/' + productid, {
+            method: "POST"
+        }).then((res) => res.json())
             .then((res) => {
-                tablecontent.append(tableRow)
+                let itemQty = document.getElementById("item-qty").value;
+                document.getElementById("tableBody").innerHTML += ' <tr><td>' + res.data.itemCode + '</td><td>' + res.data.productDescription + '</td><td>' + itemQty + '</td><td>' + res.data.productRate + '</td><td>' + 70 + '</td><td><i class="fas fa-trash"></i></td></tr>'
+            }).catch(() => {
+                alert("Item code You Enterd is incorrect")
             })
-        .catch(err => console.error(err));
-
-
-
-})
-
-
-    var tableRow = '<tr><td>item</td><td>Soap</td><td>5</td><td>70</td><td>70</td><td><i class="fas fa-trash"></i></td></tr>'
-
-
+    })
+    
 </script>

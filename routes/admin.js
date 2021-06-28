@@ -1,5 +1,7 @@
+const { response } = require("express");
 var express = require("express");
 const { ObjectId, Db } = require("mongodb");
+const { resolve } = require("promise");
 const { route } = require(".");
 const adminHelpers = require("../Helpers/admin-helpers");
 
@@ -98,12 +100,21 @@ router.get("/create-quote", (req, res) => {
 });
 
 //fetch product using ajax XMLHttp Request
-router.post("/fetchproduct",(req,res)=>{
-  console.log(req.body);
-  adminHelpers.findProduct(req.body.proId).then((data)=>{
-    console.log(data);
-    res.json(data)
-  })
+router.post("/fetchproduct/:code", (req, res) => {
+  return new Promise((resolve, reject) => {
+    console.log(req.params.code);
+    adminHelpers.findProduct(req.params.code).then((data) => {
+
+      console.log(data);
+      resolve(res.json({ data }))
+
+    }).catch((err) => {
+      reject(err)
+    })
+
+
+  }).catch((err)=>res.json(err))
+
 
 })
 module.exports = router;
