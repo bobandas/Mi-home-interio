@@ -1,0 +1,227 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Main row -->
+
+            <div class="card card-primary ">
+                <div class="card-header ">
+                    <h3 class="card-title ">Create Quote</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form role="form">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="form-group">
+                                    <label for="txt-id">Order Id</label>
+                                    <input name="txt-id" type="text" class="form-control" id="txt-id"
+                                        placeholder="Enter id" />
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="form-group">
+                                    <label for="txt-date">Order Date</label>
+                                    <input type="date" class="form-control" id=" datepicker" placeholder="Select date"
+                                        autofocus />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-lg-6">
+                                <div class="form-group">
+
+                                    <label for="cusomer-name">Customer Name</label>
+                                    <input name="cusomer-name" type="text" class="form-control" id="cusomer-name"
+                                        placeholder="Customer Name" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="txt-name">Mobile</label>
+                                    <input name="customer-mobile" type="number" class="form-control"
+                                        id="customer-mobile" placeholder="Customer Name" />
+
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="form-group">
+                                    <label for="customeradress">Address</label>
+
+                                    <textarea class="form-control" name="customerAddress" id="customeradress"
+                                        style="text-transform: capitalize; font-size: medium;" spellcheck="false"
+                                        name="message" placeholder="Enter the address" rows="5"></textarea>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-1 col-md-4">
+                                <div class="form-group">
+                                    <label>Item Code</label>
+                                    <input type="text" class="form-control" name="itemCode" maxlength="5"
+                                        id="quoteitemcode" style="text-transform: uppercase;"
+                                        onkeyup="this.value = this.value.toUpperCase()" autocomplete="off"
+                                        placeholder="item code" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-8">
+                                <div class="form-group">
+                                    <label for="txt-desc">Description</label>
+                                    <input name="txt-desc" type="text" class="form-control" id="txt-desc"
+                                        placeholder="Description" />
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-4">
+                                <div class="form-group">
+                                    <label for="txt-qty">Quantity</label>
+                                    <input name="txt-qty" type="text" class="form-control" id="txt-qty"
+                                        placeholder="Enter Quantity" />
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-4 ">
+                                <div class="form-group">
+                                    <label for="txt-price">Unit Price</label>
+                                    <input name="txt-price" type="text" class="form-control" id="txt-price"
+                                        placeholder="Unit price" />
+                                </div>
+                            </div>
+                            <div class="col-lg-1 col-md-4 align-self-center">
+                                <button type="button" id="btn-add" class="btn btn-primary">add</button>
+
+                            </div>
+
+                        </div>
+
+                        <!-- /.card-body -->
+
+                    </div>
+
+
+
+                </form>
+            </div>
+            <br>
+            <div class="card card-primary ">
+
+                <div id="tbl-card" class="card">
+                    <div class="card-body">
+                        <table id="tbl-orders" class="table table-hover" style="border: none;">
+                            <thead>
+                                <th id="th-code">Item Code</th>
+                                <th id="th-desc">Description</th>
+                                <th id="th-qty">Quantity</th>
+                                <th id="th-price">Unit Price</th>
+                                <th id="th-total">Total</th>
+                                <th></th>
+                            </thead>
+                            <tbody id="tableBody">
+                                <tr>
+                                    <td>KTC001</td>
+                                    <td>Soap</td>
+                                    <td>5</td>
+                                    <td>70</td>
+                                    <td>70</td>
+                                    <td><i class="fas fa-trash"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>I001</td>
+                                    <td>Soap</td>
+                                    <td>5</td>
+                                    <td>70</td>
+                                    <td>70</td>
+                                    <td><i class="fas fa-trash"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>I001</td>
+                                    <td>Soap</td>
+                                    <td>5</td>
+                                    <td>70</td>
+                                    <td>70</td>
+                                    <td><i class="fas fa-trash"></i></td>
+                                </tr>
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+
+
+
+                                    <th scope="row"></th>
+                                    <th scope="row"></th>
+                                    <th scope="row"></th>
+                                    <th scope="row">Total</th>
+                                    <td>21,000</td>
+                                </tr>
+                                <tr>
+                                    <td style=""></td>
+                                    <td></td>
+                                    <td></td>
+
+                                    <th scope="row">VAT 5%</th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <th scope="row">Grad Total</th>
+                                </tr>
+
+                            </tfoot>
+
+                        </table>
+                    </div>
+
+
+
+
+
+                    <div class="card-footer">
+                        <button type="button" id="btn-placeorder" class="btn btn-primary">Place Order</button>
+                    </div>
+                </div>
+    </section>
+</div>
+
+<script>
+    var addButton = document.getElementById('btn-add')
+    addButton.addEventListener("click", () => {
+        var productid = document.getElementById('quoteitemcode').value;
+        var tablecontent = document.getElementById('tableBody')
+        // create a JSON object
+        const invoiceData = {
+            proId: productid
+
+        };
+
+        // request options
+        const options = {
+            method: 'POST',
+            body: JSON.stringify(invoiceData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        // send post request
+        fetch('/admin/fetchproduct', options)
+            .then(res => res.json())
+            .then((res) => {
+                tablecontent.append(tableRow)
+            })
+        .catch(err => console.error(err));
+
+
+
+})
+
+
+    var tableRow = '<tr><td>item</td><td>Soap</td><td>5</td><td>70</td><td>70</td><td><i class="fas fa-trash"></i></td></tr>'
+
+
+</script>

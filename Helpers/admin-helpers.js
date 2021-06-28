@@ -105,7 +105,7 @@ module.exports = {
     });
   },
   
-  findProduct: (itemCode) => {
+  findProduct: (Code) => {
    
     
     
@@ -113,7 +113,7 @@ module.exports = {
      let data = await db
         .get()
         .collection(collection.PRODUCT_COLLECTION)
-        .findOne({ _id: itemCode });
+        .findOne( {itemCode:  Code});
       if (data == null) {
         reject("Product Not found");
       } else {
@@ -123,5 +123,29 @@ module.exports = {
       }
     });
   },
+  updateProduct: (productId,updatedData)=>{
+    console.log(" calling update product",  productId,updatedData);
+    return new Promise(async(resolve,reject)=>{
+      
+     await db.get().collection(collection.PRODUCT_COLLECTION).replaceOne(
+        {_id:productId},
+        updatedData
+
+      )
+      resolve()
+
+    })
+  },
+  deleteProduct: (proid)=>{
+    return new Promise(async(resolve,reject)=>{
+      await db.get().collection(collection.PRODUCT_COLLECTION).remove(
+        {_id:proid},
+        {justone:true}
+      )
+      resolve()
+
+    })
+    
+  }
   
 };

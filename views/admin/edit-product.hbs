@@ -1,18 +1,19 @@
-<div class="card" style="display: block;" id="sectionadd">
+{{!-- edit product --}}
+<div class="card"  id="sectionedit">
     <div class="card-body">
-        <h2 class="card-title">Add Product</h2>
+        <h2 class="card-title">Edit Product</h2>
 
-        <form class="forms-sample" action="add-product" method="POST">
+        <form class="forms-sample" action="/admin/edit-product/{{editedData._id}}" method="POST">
             <div class="form-group row " style="margin-left: auto;">
                 <div class="col-xs-3">
-                    <label for="exampleInputUsername1">Item Code</label>
+                    <label for="exampleInputUsername1">Item Code (Read only)</label>
                     <input type="text" class="form-control" name="itemCode" maxlength="5" id="exampleInputUsername1"
-                        style="text-transform: uppercase;" onkeyup="this.value = this.value.toUpperCase()" autocomplete="off" placeholder="item code" autofocus/>
+                        style="text-transform: uppercase;"  value="{{editedData.itemCode}}" readonly/>
                 </div>
                 <div class="col-10">
                     <label for="exampleInputProduct">Description</label>
                     <input type="text" class="form-control" name="productDescription" id="exampleInputProduct"
-                        style="text-transform: capitalize;" autocomplete="off" placeholder="Description" />
+                        style="text-transform: capitalize;" autocomplete="off" value="{{editedData.productDescription}}"  />
                 </div>
 
             </div>
@@ -22,14 +23,15 @@
                     <label for="exampleInputUsername1">About Product</label>
                     <textarea class="form-control" name="aboutProduct" id="exampleInputUsername1"
                         style="text-transform: capitalize;" name="message"
-                        placeholder="Detailed Description About Product" rows="2"></textarea>
+                         rows="2">{{editedData.aboutProduct}}</textarea>
 
                 </div>
                 <div class="col-1">
                     <label for="exampleInputProduct">Unit</label>
 
                     <select type="text" class="form-control" name="unit" id="exampleInputProduct"
-                        style="text-transform: capitalize;">
+                        style="text-transform: capitalize;"  >
+                        
                         <option value="PCS">PCS</option>
                         <option value="RM">RM</option>
 
@@ -38,8 +40,8 @@
                 <div class="col-2">
                     <label for="exampleInputProduct">Rate</label>
 
-                    <input type="number" class="form-control" name="productRate" id="exampleInputProduct"
-                        placeholder="Enter Amount" min="0">
+                    <input type="number" class="form-control" name="productRate" id="exampleInputProduct" value="{{editedData.productRate}}"
+                        min="0">
                 </div>
 
             </div>
@@ -51,12 +53,14 @@
 
 
 
-            <button type="submit" class="btn btn-primary mr-2">Add Product</button>
+            <button type="submit" class="btn btn-primary mr-2">Update</button>
 
         </form>
     </div>
-</div>
-<br>
+</div><br>
+
+
+
 
 <div class="card">
     <div class="card-body">
@@ -75,7 +79,7 @@
             <tbody>
                 {{#each productData}}
                 <tr>
-                    <th scope="row" class="create_index" > {{inc @index}}</th>
+                    <th scope="row">{{inc @index}}</th>
                     <td  style="text-transform: uppercase;">{{this.itemCode}}</td>
                     <td>{{this.productDescription}}</td>
                     <td>{{this.unit}}</td>
@@ -93,4 +97,3 @@
     </div>
 </div>
 
- 
