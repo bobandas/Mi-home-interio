@@ -3,8 +3,10 @@ var collection = require("../config/collection");
 const bcrypt = require("bcrypt");
 const bodyParser = require("body-parser");
 const jsonParser = bodyParser.json();
+const invNum = require("invoice-number");
 
 const ObjectId = require("mongodb").ObjectId;
+const { resolve, reject } = require("promise");
 
 module.exports = {
   addEmployee: async (emp, callback) => {
@@ -18,24 +20,17 @@ module.exports = {
       });
   },
 
-
-
-
-
   findEmployee: (empId) => {
     console.log(empId);
-    
-    
+
     return new Promise(async (resolve, reject) => {
-     let data = await db
+      let data = await db
         .get()
         .collection(collection.EMPLOYEE_COLLECTION)
-        .findOne({ _id: ObjectId(empId)  });
+        .findOne({ _id: ObjectId(empId) });
       if (data == null) {
         reject("Internor Error-No employee Found In DB");
       } else {
-       
-       
         resolve(data);
       }
     });
@@ -70,82 +65,93 @@ module.exports = {
     });
   },
   validateLogin: (req, res, next) => {
-    
     if (req.session.employee) {
       next();
     } else {
+      res.status = 401;
       res.redirect("/");
     }
   },
-  addProduct: (productData)=>{
-    return new Promise(async(resolve,reject)=>{
-      await db.get().collection(collection.PRODUCT_COLLECTION).insertOne(productData).then(()=>{
-        resolve()
-      })
-      
-    })
-  },
-  findAllProduct: () => {
-   
-    
-    
+  addProduct: (productData) => {
     return new Promise(async (resolve, reject) => {
-     let allProductData= await db
+      await db
         .get()
         .collection(collection.PRODUCT_COLLECTION)
-        .find().toArray()
+        .insertOne(productData)
+        .then(() => {
+          resolve();
+        });
+    });
+  },
+  findAllProduct: () => {
+    return new Promise(async (resolve, reject) => {
+      let allProductData = await db
+        .get()
+        .collection(collection.PRODUCT_COLLECTION)
+        .find()
+        .toArray();
       if (allProductData == null) {
         reject("NO Product found");
       } else {
-        
-       
-       
         resolve(allProductData);
       }
     });
   },
-  
+
   findProduct: (Code) => {
-   
-    
-    
     return new Promise(async (resolve, reject) => {
-     let data = await db
+      let data = await db
         .get()
         .collection(collection.PRODUCT_COLLECTION)
-        .findOne( {itemCode:  Code});
+        .findOne({ itemCode: Code });
       if (data == null) {
         reject("Product Not found");
       } else {
-       
-       
         resolve(data);
       }
     });
   },
-  updateProduct: (productId,updatedData)=>{
-    console.log(" calling update product",  productId,updatedData);
-    return new Promise(async(resolve,reject)=>{
-      
-     await db.get().collection(collection.PRODUCT_COLLECTION).replaceOne(
-        {_id:productId},
-        updatedData
+  serchProduct: (hint) => {
+    return new Promise(async (resolve, reject) => {
+      let productData = await db
+        .get()
+        .collection(collection.PRODUCT_COLLECTION)
+        .find({ itemCode: { $regex: "^" + hint } })
+        .toArray();
 
-      )
-      resolve()
-
-    })
+      if (productData) {
+        resolve(productData);
+      } else {
+        reject("no product found");
+      }
+    }).catch(err);
   },
-  deleteProduct: (proid)=>{
-    return new Promise(async(resolve,reject)=>{
-      await db.get().collection(collection.PRODUCT_COLLECTION).remove(
-        {_id:proid},
-        {justone:true}
-      )
-      resolve()
-
-    })
-    
-  }
-  
+  updateProduct: (productId, updatedData) => {
+    console.log(" calling update product", productId, updatedData);
+    return new Promise(async (resolve, reject) => {
+      await db
+        .get()
+        .collection(collection.PRODUCT_COLLECTION)
+        .replaceOne({ _id: productId }, updatedData);
+      resolve();
+    });
+  },
+  deleteProduct: (proid) => {
+    return new Promise(async (resolve, reject) => {
+      await db
+        .get()
+        .collection(collection.PRODUCT_COLLECTION)
+        .remove({ _id: proid }, { justone: true });
+      resolve();
+    });
+  },
+  genarateQuoteNumber: (previusQuoteNumber) => {
+    return new Promise(async (resolve, reject) => {
+      let quoteNumber='Q0000'
+      if(previusQuoteNumber){
+        quoteNumber=await invNum.next(previusQuoteNumber)
+      }
+     resolve(quoteNumber)
+    });
+  },
 };

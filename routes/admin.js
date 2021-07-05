@@ -85,6 +85,8 @@ router.post("/edit-product/:id", (req, res) => {
   var id = ObjectId(req.params.id);
   adminHelpers.updateProduct(id, req.body).then(() => {
     res.redirect("/admin/product-management");
+  }).catch((err)=>{
+    console.log(err);
   });
 });
 router.get("/delete-product/:id", (req, res) => {
@@ -94,27 +96,37 @@ router.get("/delete-product/:id", (req, res) => {
   });
 });
 router.get("/create-quote", (req, res) => {
-  res.render("admin/create-quote", {
-    layout: "admin-layout",
+  adminHelpers.genarateQuoteNumber().then((quoteNumber) => {
+    res.render("admin/create-quote", { quoteNumber,
+      layout: "admin-layout",
+    });
   });
 });
 
-//fetch product using ajax XMLHttp Request
+//fetch product using ajax fetch  Request
 router.post("/fetchproduct/:code", (req, res) => {
   return new Promise((resolve, reject) => {
-    console.log(req.params.code);
-    adminHelpers.findProduct(req.params.code).then((data) => {
-
-      console.log(data);
-      resolve(res.json({ data }))
-
-    }).catch((err) => {
-      reject(err)
-    })
-
-
-  }).catch((err)=>res.json(err))
-
-
-})
+    adminHelpers
+      .findProduct(req.params.code)
+      .then((data) => {
+        resolve(res.json({ data }));
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  }).catch((err) => res.json(err));
+});
+router.post("/serchproduct/:hint", (req, res) => {
+  return new Promise((resolve, reject) => {
+    adminHelpers
+      .serchProduct(req.params.hint.toUpperCase())
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => {
+        console.log(err);
+        reject();
+      });
+  });
+});
 module.exports = router;

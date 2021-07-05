@@ -21,7 +21,8 @@
                                 <div class="form-group">
                                     <label for="txt-id">Order Id</label>
                                     <input name="txt-id" type="text" class="form-control" id="txt-id"
-                                        placeholder="Enter id" />
+                                        placeholder= {{quoteNumber}} readonly>
+
                                 </div>
                             </div>
                             <div class="col-sm-12 col-lg-6">
@@ -38,12 +39,12 @@
                                 <div class="form-group">
 
                                     <label for="cusomer-name">Customer Name</label>
-                                    <input name="cusomer-name" type="text" class="form-control" id="cusomer-name"
+                                    <input name="cusomer-name" type="text" style="text-transform: capitalize; font-size: medium;" class="form-control" id="cusomer-name"
                                         placeholder="Customer Name" />
                                 </div>
                                 <div class="form-group">
                                     <label for="txt-name">Mobile</label>
-                                    <input name="customer-mobile" type="number" class="form-control"
+                                    <input name="customer-mobile" style="font-size: medium;"type="number" class="form-control"
                                         id="customer-mobile" placeholder="Customer Name" />
 
                                 </div>
@@ -64,11 +65,15 @@
                             <div class="col-lg-1 col-md-4">
                                 <div class="form-group">
                                     <label>Item Code</label>
-                                    <input type="text" class="form-control" name="itemCode" maxlength="5"
-                                        id="quoteitemcode" style="text-transform: uppercase;"
+                                    <input type="text" class="form-control " list="itemcodelist" name="itemCode"
+                                        maxlength="5" id="quoteitemcode" style="text-transform: uppercase;"
                                         onkeyup="this.value = this.value.toUpperCase()" autocomplete="off"
                                         placeholder="item code" />
+                                    <datalist id="itemcodelist" class="selectpicker">
+
+                                    </datalist>
                                 </div>
+
                             </div>
                             <div class="col-lg-6 col-md-8">
                                 <div class="form-group">
@@ -80,7 +85,7 @@
                             <div class="col-lg-2 col-md-4">
                                 <div class="form-group">
                                     <label for="txt-qty">Quantity</label>
-                                    <input name="txt-qty" type="text" class="form-control" id="item-qty"
+                                    <input name="txt-qty" type="text" min="1" class="form-control" id="item-qty"
                                         placeholder="Enter Quantity" />
                                 </div>
                             </div>
@@ -123,64 +128,67 @@
                             <tbody id="tableBody">
 
 
+
                             </tbody>
-                            <tfoot>
-                                <tr>
 
 
 
-                                    <th scope="row"></th>
-                                    <th scope="row"></th>
-                                    <th scope="row"></th>
-                                    <th scope="row">Total</th>
-                                    <td>21,000</td>
-                                </tr>
-                                <tr>
-                                    <td style=""></td>
-                                    <td></td>
-                                    <td></td>
 
-                                    <th scope="row">VAT 5%</th>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <th scope="row">Grad Total</th>
-                                </tr>
-
-                            </tfoot>
 
                         </table>
+
                     </div>
 
 
 
 
 
-                    <div class="card-footer">
-                        <button type="button" id="btn-placeorder" class="btn btn-primary">Place Order</button>
-                    </div>
+
                 </div>
+                <hr>
+
+                <div class="card card-primary ">
+
+                    <div id="tbl-card" class="card ">
+                        <div class="card-body ">
+                            <table id="tbl-orders" class="table float-right" style="border: none;">
+                                <tr>
+
+
+                                    <td class="h4">Total</td>
+
+                                    <td><span id="pre_vat_total" class="h4"> 0 /-</span> </td>
+                                </tr>
+                                <tr>
+
+                                    <td class="h4">VAT 5%</td>
+
+                                    <td><span id="vat" class="h4"> 0 /-</span> </td>
+
+                                </tr>
+                                <tr>
+
+                                    <td class="h3">Grad Total</td>
+
+                                    <td><span id="grand_total" class="h3"> 0 /-</span> </td>
+
+                                </tr>
+                            </table>
+
+                        </div>
+
+
+
+
+
+
+                        <div class="card-footer">
+                            <button type="button" id="btn-placeorder" class="btn btn-primary">Place Order</button>
+                        </div>
+                    </div>
+
+
     </section>
 </div>
 
-<script>
-    var addButton = document.getElementById("btn-add")
-
-
-    addButton.addEventListener("click", () => {
-
-        var productid = document.getElementById('quoteitemcode').value;
-        fetch('/admin/fetchproduct/' + productid, {
-            method: "POST"
-        }).then((res) => res.json())
-            .then((res) => {
-                let itemQty = document.getElementById("item-qty").value;
-                document.getElementById("tableBody").innerHTML += ' <tr><td>' + res.data.itemCode + '</td><td>' + res.data.productDescription + '</td><td>' + itemQty + '</td><td>' + res.data.productRate + '</td><td>' + 70 + '</td><td><i class="fas fa-trash"></i></td></tr>'
-            }).catch(() => {
-                alert("Item code You Enterd is incorrect")
-            })
-    })
-    
-</script>
+<script src="/javascripts/form-invoice.js"></script>
