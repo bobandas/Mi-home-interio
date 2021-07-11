@@ -124,7 +124,7 @@ module.exports = {
       } else {
         reject("no product found");
       }
-    }).catch(err);
+    }).catch();
   },
   updateProduct: (productId, updatedData) => {
     console.log(" calling update product", productId, updatedData);
